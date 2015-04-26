@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{CPSC 449: Programming Paradigms} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Assignment Two \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{HUNG, Michael; UCID 10099049} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+To prove or (match x xs) = elem x xs, we must prove the base case and induction step, which are as follows: \\
+
+\textbf{Base Case.} $P$([ ]) = or (match x [ ]) = elem x [ ]) \\
+\textbf{Induction Step.} $P$(xs) $\Rightarrow$ $P$(x:xs) \\
+or (match x xs) = elem x xs $\Rightarrow$ or (match x (y:ys)) = elem x (y:ys)\\
+\\
+
+\textbf{\underline{Base Case}}
+
+or (match x [ ]) = elem x [ ])
+
+or [ ] = elem x [ ] \hspace{50pt}\textit{by match.1}
+
+False = elem x [ ] \hspace{46pt} \textit{by or.1}
+
+False = False \hspace{64pt} \textit{by elem.1}
+\\
+The base case holds.
+\\
+\\
+We assume that or (match x xs) = elem x xs holds, and try to prove that or (match x (y:ys)) = elem x (y:ys) holds. \\
+\\
+\textbf{\underline{RHS:}}
+
+elem x (y:ys)\\
+(x == y) || (elem x ys) \hspace{30pt} \textit{by elem.2} \\
+
+\textbf{\underline{LHS:}}
+
+or (match x (y:ys)) \\
+or ((x == y):(match x ys)) \hspace{12pt} \textit{by match.2} \\
+(x == y) || (or (match x ys)) \hspace{12pt} \textit{by or.2} \\
+
+Since in both the LHS and RHS, (x == y) is one of the disjuncts, we need only focus on the second parts,(or (match x ys)) and (elem x ys). However, by our hypothesis, we assumed that or (match x xs) = elem x xs holds. In other words, by the hypothesis, we can change either the LHS to match the RHS, or the RHS to match the LHS. The proof is complete.
+
+\begin{flushright}
+$\square$
+\end{flushright}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{CPSC 449: Programming Paradigms} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Assignment Three \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Hung, Michael; UCID 10099049} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section*{1(e). Principle of Structural Induction for Data Type Poly}
+
+To prove that $P(p)$ holds for all finite polynomials Poly $p$, we must prove the following:\\
+\begin{itemize}
+\item Base Case: $P($Constant $c)$ $\wedge P($Variable $v)$
+\item Induction Step: $P(p_1) \wedge P(p_2) \rightarrow P(Add$ $p_1$ $p_2) \wedge P(Mult$ $p_1$ $p_2) \wedge P(Exp$ $p_1$ $p_2)$
+
+\end{itemize}
+
+\section*{2. Proof of $size$ $t_r < 2^{depth \hspace{3pt} t_r}$ by Structural Induction}
+
+Given:\\
+
+$depth$ :: $Tree$ $a$ $\rightarrow$ Integer\\
+$depth$ $NilT = 0$ \hspace{300pt}(depth.1)\\
+$depth$ $(Node$ $n$ $t_1$ $t_2) = 1 + \max$ $(depth\hspace{3pt} t_1)$ $(depth\hspace{3pt} t_2)$   \hspace{132pt} (depth.2)\\
+
+$size$ $NilT = 0$  \hspace{312pt}(size.1)\\
+$size$ $(Node$ $x$ $t_1$ $t_2)= 1 +$ $size$ $t_1 +$ $size$ $t_2$ \hspace{192pt}(size.2)\\
+
+Prove for all finite $nTree$s, $t_r$, $size$ $t_r < 2^{depth \hspace{3pt} t_r}$\\
+
+\begin{proof}
+$size$ $t_r < 2^{depth \hspace{3pt} t_r}$\\
+\\
+
+\textbf{\underline{Base Case $P(NilT)$:}}
+
+$size NilT < 2{depth NilT}$\\
+$0 < 2^{depth \hspace{3pt} NilT}$       \hspace{300pt}                                      (by size.1)\\
+$0 < 2^0$          \hspace{340pt}                                              (by depth.1)\\
+$0 < 1$               \hspace{350pt}                \\
+
+\textbf{\underline{Inductive Hypothesis $P(t1) \wedge P(t2)$:}}
+
+ $size$ $t_1 < 2^{depth \hspace{3pt} t_1}$       \hspace{300pt}                                   (hyp.1)\\
+ $size$ $t_2 < 2^{depth \hspace{3pt} t_2} $         \hspace{300pt}                               (hyp.2)\\
+
+\textbf{\underline{Assume Inductive Hypothesis and Prove Inductive Step $P(Node$ $n$ $t_1$ $t_2$):}}
+
+ $size$ $(Node$ $n$ $t_1$ $t_2) < 2^{depth (Node \hspace{3pt} n \hspace{3pt} t_1 \hspace{3pt} t_2)}$\\
+ 
+ \textbf{LHS - $size$ $(Node$ $n$ $t_1$ $t_2)$:}\\
+\\
+ $size$ $(Node$ $x$ $t_1$ $t_2) = 1 +$ $size$ $t_1 + size$ $t_2$      \hspace{180pt}                                             (by size.2) \\
+ $1 + size$ $t_1+ size$ $t_2  < 1 + 2^{depth\hspace{3pt} t1} + size$ $t_2$       \hspace{170pt}                                    (by hyp.1)\\
+ $1 + size$ $t_1 + size$ $t_2  < 1 + 2^{depth \hspace{3pt} t_1} + 2^{depth \hspace{3pt} t_2}$     \hspace{168pt}                                 (by hyp.2)\\
+  
+\textbf{RHS - $2^{depth \hspace{3pt}(Node\hspace{3pt} n\hspace{3pt} t_1\hspace{3pt} t_2)}$:}\\
+
+ $depth$ $(Node$ $n$ $t_1$ $t_2) = 2^{1 + max \hspace{3pt}(depth\hspace{3pt} t_1)\hspace{3pt} (depth\hspace{3pt} t_2)}$   \hspace{135pt}    (by depth.2)\\
+$2^{1 + max \hspace{3pt}(depth\hspace{3pt} t_1) \hspace{3pt}(depth\hspace{3pt} t_2)} = 2 \times 2^{max\hspace{3pt} (depth\hspace{3pt} t_1)\hspace{3pt} (depth\hspace{3pt} t_2)}$\\
+
+\textbf{If $max$ $(depth$ $t_1)$ $(depth$ $t_2) = (depth$ $t_1)$:}
+
+ $1 + size$ $t_1 + size$ $t_2 < 1 + 2^{depth\hspace{3pt} t_1} + 2^{depth\hspace{3pt} t_2} \leq 2 * 2^{depth\hspace{3pt} t_1}$\\
+\\
+Since $depth$ $t_1 > depth$ $t_2$, $depth$ $t_1 - 1 \geq depth$ $t_2$.\\
+So $1 +$ $size$ $t_1 + size$ $t_2 < 1 + 2^{depth \hspace{3pt} t_1} + 2^{depth \hspace{3pt} t_2} \leq 1 + 2^{depth \hspace{3pt} t_1} + 2^{depth \hspace{3pt} t_1 - 1} \leq 2 * 2^{depth \hspace{3pt} t_1}$\\
+
+To prove this inequality, we need to prove that $1 + 2^n + 2^{n - 1}\leq 2 * 2^n$ is indeed true.\\
+
+\begin{proof}
+$1 + 2^n + 2^{n - 1} \leq 2 * 2^n$\\
+\\
+ Base $n = 1:$\\
+ $1 + 2^1 + 2^0 <= 2*2^1$
+ $4 <= 4$
+
+ Assume this is true for $1 \leq n \leq k$ where $n \in \mathbb{N}$.\\
+ Prove $n = k + 1$\\
+\\
+ $1 + 2^{k+1} + 2^k \leq 2*2^{k+1}$\\
+ $1 + 3*2^k \leq 4*2^k$
+            
+\end{proof} 
+
+ So since $1 + size$ $t_1 + size$ $t_2 < 1 + 2^{depth \hspace{3pt} t_1} + 2^{depth\hspace{3pt} t_1 - 1} \leq 2 * 2^{depth\hspace{3pt} t_1}$, $1 + size$ $t_1 + size$ $t_2 < 2^{1 + depth \hspace{3pt} t1}$
+
+The proof proceeds much the same way for if $max$ $(depth$ $t_1)$ $(depth$ $t_2) = (depth$ $t_2)$.\\
+
+WLOG, the proof is complete.
+\end{proof}
+
+
+\end{document}
